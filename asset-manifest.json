@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e2ef9a15.css",
+    "main.js": "/static/js/main.0be30947.js",
+    "static/media/Assiduus_Global_Logo.jpg": "/static/media/Assiduus_Global_Logo.da24cdc3d7ec64bc031d.jpg",
+    "static/media/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.avif": "/static/media/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.b05847ae442aefe19828.avif",
+    "index.html": "/index.html",
+    "main.e2ef9a15.css.map": "/static/css/main.e2ef9a15.css.map",
+    "main.0be30947.js.map": "/static/js/main.0be30947.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e2ef9a15.css",
+    "static/js/main.0be30947.js"
+  ]
+}
