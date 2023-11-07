@@ -1,24 +1,34 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header/Header';
+import CheckingAccount from './components/GraphData/CheckingAccount';
+import Invoices from './components/GraphData/Invoices';
+import TotalCashFlow from './components/GraphData/TotalCashFlow';
+import Wishlist from './components/GraphData/Wishlist';
+import SideBar from './components/Sidebar/SideBar';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <Header />
+      <SideBar />
+      <div className="main-content">
+        <div className="grid-container">
+          <div className="grid-item">
+            <CheckingAccount />
+          </div>
+          <div className="grid-item">
+            <Invoices />
+          </div>
+          <div className="grid-item">
+            <TotalCashFlow />
+          </div>
+          <div className="grid-item">
+            <Wishlist />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

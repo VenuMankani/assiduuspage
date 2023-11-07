@@ -1,0 +1,113 @@
+.Container {
+  max-height: 30rem;
+  max-width: 50rem;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.table {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  overflow: hidden;
+  padding-top: 1rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  padding-bottom: 3rem;
+}
+
+.section1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.section2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 2rem
+}
+
+.month {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.ytd {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.CheckingAccountHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.manageMonths {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  padding: 0.5rem;
+}
+
+.invoicesButton {
+  display: flex;
+  height: 3rem;
+  width: 9rem;
+  background-color: #e3f7ff;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+  padding: 0px;
+  color: rgb(67, 177, 67);
+  margin: 10px;
+  height: 35px;
+}
+
+.invoicesButton:hover {
+  background-color: #9edff8;
+  cursor: pointer;
+  color: black;
+}
+
+.x-axis-labels {
+  font-size: 32px;
+  fill: red;
+  transform: translate(0, 5px);
+  text-anchor: middle;
+}
+
+.TCF {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+
+}
+
+.In {
+  height: 1rem;
+  width: 1rem;
+  background-color: #2acf14;
+  border-radius: 4px;
+}
+
+.Out {
+  height: 1rem;
+  width: 1rem;
+  background-color: #4BB543;
+  border-radius: 4px;
+}
