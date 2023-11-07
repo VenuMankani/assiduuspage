@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import * as d3 from "d3";
 import styles from './graphData.module.css'
-import { Typography, Divider, IconButton } from '@mui/material';
+import { Typography, Divider, IconButton, Tooltip } from '@mui/material';
 import { PageContext } from '../context/ContextProvider';
 import ShuffleIcon from '@mui/icons-material/Shuffle';
 
@@ -12,10 +12,10 @@ const TotalCashFlow = () => {
   const svgRef = useRef<any>();
   const contextValue = useContext(PageContext);
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  const [tickLabels, setTickLabels] = useState(months);
-  const [data1, setData1] = useState(initdata1);
-  const [data2, setData2] = useState(initdata2);
-  const [showRandomData, setShowRandomData] = useState(false);
+  const [tickLabels, setTickLabels] = useState<string[]>(months);
+  const [data1, setData1] = useState<number[]>(initdata1);
+  const [data2, setData2] = useState<number[]>(initdata2);
+  const [showRandomData, setShowRandomData] = useState<boolean>(false);
 
   const randomizeData = () => {
     // Generate random data for data1 and data2
@@ -37,7 +37,7 @@ const TotalCashFlow = () => {
     d3.select(svgRef.current).selectAll("*").remove();
 
     // Combine data1 and data2 into a single dataset for stacking
-    const stackedData: any = data1.map((d1, i) => ({ d1, d2: data2[i] }));
+    const stackedData: { d1: number; d2: number; }[] = data1.map((d1, i) => ({ d1, d2: data2[i] }));
 
     // setting up svg
     let w = 600;
@@ -106,7 +106,9 @@ const TotalCashFlow = () => {
       <div className={styles.CheckingAccountHeader}>
         <Typography variant="h6" paddingTop={'0.5rem'} paddingLeft={'1rem'} fontWeight={700}>Total cash flow</Typography>
         <IconButton onClick={randomizeData}>
-          <ShuffleIcon />
+          <Tooltip placement='top' title={"Randomize Data"}>
+            <ShuffleIcon />
+          </Tooltip>
         </IconButton>
         <div className={styles.TCF}>
           <div className={styles.In}></div><Typography>In</Typography>

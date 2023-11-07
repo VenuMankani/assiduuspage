@@ -5,7 +5,7 @@
     height: 100%;
 }
 
-@media screen and (max-height: 750px) {
+@media (max-height: 1024px) {
     .wrapper {
       height: 150%;
     }

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import styles from './graphData.module.css'
-import { Typography, Divider, Snackbar, Button, IconButton } from '@mui/material';
+import { Typography, Divider, Snackbar, Button, IconButton, Tooltip } from '@mui/material';
 import * as d3 from "d3";
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import { PageContext } from '../context/ContextProvider';
@@ -17,11 +17,11 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
 const Invoices = () => {
   const svgRef = useRef<any>();
   const inputFile = useRef<any>(null);
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarOpen, setSnackbarOpen] = useState<boolean>(false);
   const contextValue = useContext(PageContext);
-  const [data, setData] = useState([50, 100, 180, 130, 150, 70]);
+  const [data, setData] = useState<number[]>([50, 100, 180, 130, 150, 70]);
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  const [tickLabels, setTickLabels] = useState(months);
+  const [tickLabels, setTickLabels] = useState<string[]>(months);
 
   const handleButtonClick = () => {
     const newData = Array.from({ length: 6 }, () => Math.floor(Math.random() * 180));
@@ -94,7 +94,9 @@ const Invoices = () => {
       <div className={styles.CheckingAccountHeader}>
         <Typography variant="h6" paddingTop={'0.5rem'} paddingLeft={'1rem'} fontWeight={700}>Invoices owed to you</Typography>
         <IconButton onClick={handleButtonClick}>
-          <ShuffleIcon />
+          <Tooltip placement='top' title={"Randomize Data"}>
+            <ShuffleIcon />
+          </Tooltip>
         </IconButton>
         <div className={styles.manageMonths}>
           <input type='file' id='file' ref={inputFile} onChange={handleFileSelect} style={{ display: 'none' }} />

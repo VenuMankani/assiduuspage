@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import AssiduusLogo from '../assets/Assiduus_Global_Logo.jpg'
-import { Avatar, InputAdornment, TextField, ListItemAvatar, Badge, FormControl, Select, IconButton, Menu, MenuItem } from '@mui/material'
+import { Avatar, InputAdornment, TextField, ListItemAvatar, Badge, FormControl, Select, IconButton, Menu, MenuItem, Tooltip } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
@@ -43,13 +43,17 @@ const Header = () => {
           }} />
         <IconButton>
           <Badge color="success" overlap="circular" variant='dot' badgeContent="">
-            <NotificationsIcon style={{ color: "black" }} fontSize='large' />
+            <Tooltip placement='top' title={"Notifications"}>
+              <NotificationsIcon style={{ color: "black" }} fontSize='large' />
+            </Tooltip>
           </Badge>
         </IconButton>
-        <IconButton onClick={handleClick} style={{gap: '24px'}}>
-          <Avatar alt="Cindy Baker" src={AvatarIcon} sx={{ width: 50, height: 50 }} />
-          <ArrowDropDownIcon style={{ color: "black" }} />
-        </IconButton>
+        <Tooltip placement='bottom' title={"Profile"}>
+          <IconButton onClick={handleClick} style={{ gap: '24px' }}>
+            <Avatar alt="Cindy Baker" src={AvatarIcon} sx={{ width: 50, height: 50 }} />
+            <ArrowDropDownIcon style={{ color: "black" }} />
+          </IconButton>
+        </Tooltip>
         <Menu
           anchorEl={showMenu}
           open={Boolean(showMenu)}

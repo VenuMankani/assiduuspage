@@ -3,7 +3,7 @@ import styles from './graphData.module.css'
 import * as d3 from "d3";
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
-import { FormControl, MenuItem, Select } from '@mui/material';
+import { FormControl, MenuItem, Select, Tooltip } from '@mui/material';
 import { PageContext } from '../context/ContextProvider';
 
 const monthlyData = [
@@ -24,7 +24,7 @@ const monthlyData = [
 
 const CheckingAccount = () => {
   const [manage, setManage] = useState(1);
-  const [data, setData] = useState(monthlyData[0].data);
+  const [data, setData] = useState<number[]>(monthlyData[0].data);
   const svgRef = useRef<any>();
   const contextValue = useContext(PageContext);
 
@@ -44,9 +44,9 @@ const CheckingAccount = () => {
 
     d3.select(svgRef.current).selectAll("*").remove();
 
-    
+
     // setting up svg
-    let w = 600; 
+    let w = 600;
     let h = 200;
     if (contextValue.screenHeight < 1000 && contextValue.screenWidth < 1600) {
       w = 380;
@@ -105,13 +105,15 @@ const CheckingAccount = () => {
             </Select>
           </FormControl>
 
-          <FormControl>
-            <Select defaultValue='January' onChange={handleMonthChange}>
-              {monthlyData.map((item) => (
-                <MenuItem key={item.month} value={item.month}>{item.month}</MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+          <Tooltip placement='top' title={"Randomize Data"}>
+            <FormControl>
+              <Select defaultValue='January' onChange={handleMonthChange}>
+                {monthlyData.map((item) => (
+                  <MenuItem key={item.month} value={item.month}>{item.month}</MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Tooltip>
         </div>
       </div>
       <Divider orientation='horizontal' />
