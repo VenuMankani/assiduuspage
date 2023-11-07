@@ -7,9 +7,21 @@
 
 @media (max-height: 1024px) {
     .wrapper {
-      height: 150%;
+        height: 150%;
     }
-  }
+}
+
+@media (max-height: 800px) {
+    .wrapper {
+        height: 230%;
+    }
+}
+
+@media (min-height: 300px) {
+    .wrapper {
+        height: 210%;
+    }
+}
 
 .sidebarItem {
     display: flex;

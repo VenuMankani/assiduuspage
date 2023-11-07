@@ -52,6 +52,10 @@ const CheckingAccount = () => {
       w = 380;
       h = 150;
     }
+    if (contextValue.screenHeight < 600 && contextValue.screenWidth < 600) {
+      w = 180;
+      h = 50;
+    }
     const svg = d3
       .select(svgRef.current)
       .attr("width", w)
