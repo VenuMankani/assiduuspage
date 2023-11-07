@@ -45,10 +45,10 @@ const Invoices = () => {
     d3.select(svgRef.current).selectAll("*").remove();
 
     // setting up svg
-    let w = 700;
+    let w = 600;
     let h = 200;
     if (contextValue.screenHeight < 1000 && contextValue.screenWidth < 1600) {
-      w = 450;
+      w = 380;
       h = 150;
     }
 
