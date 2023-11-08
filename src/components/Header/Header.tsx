@@ -1,14 +1,18 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import AssiduusLogo from '../assets/Assiduus_Global_Logo.jpg'
-import { Avatar, InputAdornment, TextField, ListItemAvatar, Badge, FormControl, Select, IconButton, Menu, MenuItem, Tooltip } from '@mui/material'
+import { Avatar, InputAdornment, TextField, ListItemAvatar, Badge, FormControl, Select, IconButton, Menu, MenuItem, Tooltip, Button } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import styles from './styles.module.css'
+import { PageContext } from '../context/ContextProvider';
+import ShuffleIcon from '@mui/icons-material/Shuffle';
 import AvatarIcon from '../assets/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.avif'
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(null);
+  const contextValue = useContext(PageContext);
+  let a: boolean;
 
   const handleClick = (event: any) => {
     setShowMenu(event.currentTarget);
@@ -17,6 +21,12 @@ const Header = () => {
   const handleClose = () => {
     setShowMenu(null);
   };
+
+  const randomData = () => {
+    contextValue.randomizeTCFData();
+    contextValue.randomizeInvoiceData();
+    contextValue.randomizeWatchlistData();
+  }
 
   return (
     <div className={styles.container}>
@@ -41,10 +51,15 @@ const Header = () => {
               backgroundColor: 'whitesmoke'
             }
           }} />
+        <IconButton onClick={randomData}>
+          <Tooltip title="Randomize Data" placement='bottom'>
+            <ShuffleIcon style={{ color: "black" }} fontSize='medium' />
+          </Tooltip>
+        </IconButton>
         <IconButton>
           <Badge color="success" overlap="circular" variant='dot' badgeContent="">
             <Tooltip placement='top' title={"Notifications"}>
-              <NotificationsIcon style={{ color: "black" }} fontSize='large' />
+              <NotificationsIcon style={{ color: "black" }} fontSize='medium' />
             </Tooltip>
           </Badge>
         </IconButton>

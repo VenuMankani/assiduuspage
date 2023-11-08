@@ -19,19 +19,7 @@ const Invoices = () => {
   const inputFile = useRef<any>(null);
   const [snackbarOpen, setSnackbarOpen] = useState<boolean>(false);
   const contextValue = useContext(PageContext);
-  const [data, setData] = useState<number[]>([50, 100, 180, 130, 150, 70]);
-  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  const [tickLabels, setTickLabels] = useState<string[]>(months);
-
-  const handleButtonClick = () => {
-    const newData = Array.from({ length: 6 }, () => Math.floor(Math.random() * 180));
-    setData(newData);
-
-    const shuffledMonths = contextValue.shuffleArray([...months]);
-    //@ts-ignore
-    const randomMonths = shuffledMonths.slice(0, 6);
-    setTickLabels(randomMonths);
-  };
+  const data = contextValue.data;
 
   const handleButton = () => {
     inputFile.current.click();
@@ -69,7 +57,7 @@ const Invoices = () => {
     // setting the axes
     const xAxis = d3
       .axisBottom(xScale)
-      .tickFormat((_, i) => tickLabels[i])
+      .tickFormat((_, i) => contextValue.tickLabels[i])
       .ticks(data.length)
     svg.append("g").call(xAxis).attr("transform", `translate(0,${h})`)
       .attr('class', 'x-axis-labels')
@@ -87,17 +75,12 @@ const Invoices = () => {
       .attr("fill", "#4BB543")
       .attr("rx", 5)
       .attr("ry", 5);
-  }, [data, tickLabels, contextValue.screenHeight, contextValue.screenWidth]);
+  }, [data, contextValue.tickLabels, contextValue.screenHeight, contextValue.screenWidth]);
 
   return (
     <div className={styles.Container}>
       <div className={styles.CheckingAccountHeader}>
         <Typography variant="h6" paddingTop={'0.5rem'} paddingLeft={'1rem'} fontWeight={700}>Invoices owed to you</Typography>
-        <IconButton onClick={handleButtonClick}>
-          <Tooltip placement='top' title={"Randomize Data"}>
-            <ShuffleIcon />
-          </Tooltip>
-        </IconButton>
         <div className={styles.manageMonths}>
           <input type='file' id='file' ref={inputFile} onChange={handleFileSelect} style={{ display: 'none' }} />
           <div className={styles.invoicesButton} onClick={handleButton}>

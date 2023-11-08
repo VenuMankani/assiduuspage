@@ -3,34 +3,12 @@ import * as d3 from "d3";
 import styles from './graphData.module.css'
 import { Typography, Divider, IconButton, Tooltip } from '@mui/material';
 import { PageContext } from '../context/ContextProvider';
-import ShuffleIcon from '@mui/icons-material/Shuffle';
-
-const initdata1 = [25, 70, 45, 60, 46, 44];
-const initdata2 = [15, 100, 45, 80, 36, 44];
 
 const TotalCashFlow = () => {
   const svgRef = useRef<any>();
   const contextValue = useContext(PageContext);
-  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  const [tickLabels, setTickLabels] = useState<string[]>(months);
-  const [data1, setData1] = useState<number[]>(initdata1);
-  const [data2, setData2] = useState<number[]>(initdata2);
-  const [showRandomData, setShowRandomData] = useState<boolean>(false);
-
-  const randomizeData = () => {
-    // Generate random data for data1 and data2
-    const randomData1 = Array.from({ length: 6 }, () => Math.floor(Math.random() * 130));
-    const randomData2 = Array.from({ length: 6 }, () => Math.floor(Math.random() * 130));
-
-    setData1(randomData1);
-    setData2(randomData2);
-    setShowRandomData(!showRandomData);
-
-    const shuffledMonths = contextValue.shuffleArray([...months]);
-    //@ts-ignore
-    const randomMonths = shuffledMonths.slice(0, 6);
-    setTickLabels(randomMonths);
-  };
+  const data1 = contextValue.data1;
+  const data2 = contextValue.data2;
 
   useEffect(() => {
 
@@ -95,21 +73,16 @@ const TotalCashFlow = () => {
 
     // Add x-axis
     const xAxis = d3.axisBottom(xScale)
-      .tickFormat((_, i) => tickLabels[i])
+      .tickFormat((_, i) => contextValue.tickLabels[i])
     // .ticks(data.length)
     svg.append("g").call(xAxis).attr("transform", `translate(0,${h})`);
 
-  }, [contextValue.screenHeight, contextValue.screenWidth, showRandomData]);
+  }, [contextValue.screenHeight, contextValue.screenWidth, contextValue.showRandomData]);
 
   return (
     <div className={styles.Container}>
       <div className={styles.CheckingAccountHeader}>
         <Typography variant="h6" paddingTop={'0.5rem'} paddingLeft={'1rem'} fontWeight={700}>Total cash flow</Typography>
-        <IconButton onClick={randomizeData}>
-          <Tooltip placement='top' title={"Randomize Data"}>
-            <ShuffleIcon />
-          </Tooltip>
-        </IconButton>
         <div className={styles.TCF}>
           <div className={styles.In}></div><Typography>In</Typography>
           <div className={styles.Out}></div><Typography>Out</Typography>
