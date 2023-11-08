@@ -34,6 +34,16 @@ const Header = () => {
         <img src={AssiduusLogo} height={90} width={160} />
       </div>
       <div className={styles.components}>
+        <Button
+          variant='outlined'
+          endIcon={<ShuffleIcon />}
+          onClick={randomData}
+          style={{
+            color: 'gray'
+          }}
+        >
+          Randomize Data
+        </Button>
         <TextField
           variant='filled' size='medium'
           InputProps={{
@@ -42,7 +52,7 @@ const Header = () => {
                 sx={{
                   marginBottom: '0.5rem'
                 }}>
-                <SearchIcon />
+                <SearchIcon fontSize='large' />
               </InputAdornment>
             ),
             disableUnderline: true,
@@ -51,11 +61,6 @@ const Header = () => {
               backgroundColor: 'whitesmoke'
             }
           }} />
-        <IconButton onClick={randomData}>
-          <Tooltip title="Randomize Data" placement='bottom'>
-            <ShuffleIcon style={{ color: "black" }} fontSize='medium' />
-          </Tooltip>
-        </IconButton>
         <IconButton>
           <Badge color="success" overlap="circular" variant='dot' badgeContent="">
             <Tooltip placement='top' title={"Notifications"}>
